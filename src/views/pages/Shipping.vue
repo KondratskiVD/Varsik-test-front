@@ -36,25 +36,22 @@
       <div class="field-group">
         <div class="input-group">
           <p>E-mail</p>
-          <div>
-            <input
-              type="text"
-              class="input"
-              v-model.trim="email"
-              :class="{'is-invalid': ($v.email.$dirty && !$v.email.required)}">
-            <div>
-              <small class="invalid-feedback"
-                     v-if="$v.email.$dirty && !$v.email.required">Заполните поле</small>
-              <small class="invalid-feedback"
-                     v-else-if="$v.email.$dirty && !$v.email.email">Нужно ввести действительный адресс</small>
-            </div>
-          </div>
+          <input
+            type="text"
+            class="input"
+            v-model.trim="email"
+            :class="{'is-invalid': ($v.email.$dirty && !$v.email.required)}">
         </div>
+          <small class="invalid-feedback"
+                 v-if="$v.email.$dirty && !$v.email.required">Заполните поле</small>
+          <small class="invalid-feedback"
+                 v-else-if="$v.email.$dirty && !$v.email.email">Нужно ввести действительный адресс</small>
       </div>
       <div class="field-group">
         <div class="input-group">
           <p>Shipping Options</p>
-          <select>
+          <input v-if="sum > 300" type="text" value="Free express shipping" disabled>
+          <select v-else>
             <option
               v-for="option in options"
             >{{option.title}}</option>
@@ -104,7 +101,10 @@ export default {
         this.address !== null &&
         this.email !== null &&
         this.phone !== null
-    }
+    },
+    sum () {
+      return this.$store.state.cart.sum
+    },
   },
   methods: {
     registerUser() {
@@ -124,12 +124,14 @@ export default {
 .invalid-feedback {
   font-size: 80%;
   color: #e74a3b;
+  margin-left: 33%;
 }
 .input-group {
   display: flex;
 }
 .input-group p {
   min-width: 150px;
+  margin-bottom: 10px;
 }
 .input-group input{
   border: 1px solid #b0b0b0;

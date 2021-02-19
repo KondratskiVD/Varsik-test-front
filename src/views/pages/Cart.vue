@@ -73,9 +73,7 @@
       <div class="result__group">
         <p class="result__sum">{{ result | formattedNumber }}</p>
         <button
-          @click.stop="$router.push({
-                      name: 'shipping'
-                      });"
+          @click.stop="buyProducts"
           >BUY</button>
       </div>
     </div>
@@ -131,6 +129,10 @@ export default {
             }
         }
       })
+    },
+    buyProducts() {
+      this.$store.dispatch('cart/setNewSum', this.result)
+      this.$router.push({name: 'shipping'})
     }
   }
 }

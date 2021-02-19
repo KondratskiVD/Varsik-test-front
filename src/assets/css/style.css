@@ -134,4 +134,7 @@ button {
     .input-group input, .input-group select {
         width: 100%;
     }
+    .invalid-feedback {
+        margin-left: 0;
+    }
 }

@@ -11,6 +11,8 @@ import './assets/css/style.css'
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 
+import store from './store/index'
+
 import VueSkeletonLoader from 'skeleton-loader-vue';
 Vue.component('vue-skeleton-loader', VueSkeletonLoader);
 
@@ -18,5 +20,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
