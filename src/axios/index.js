@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-const baseURL = process.env.VUE_APP_API_LOCATION
+const baseURL = 'http://localhost:3000'
 export default Axios.create({
   baseURL
 })

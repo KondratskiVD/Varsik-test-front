@@ -55,15 +55,15 @@
       </div>
       <div class="item-group">
         <div class="item-trash">
-          <i @click="removeItem(item.id)" class="fas fa-trash-alt item-group_pointer"></i>
+          <i @click="removeItem(item._id)" class="fas fa-trash-alt item-group_pointer"></i>
         </div>
         <div class="item-count">
           <span
-            @click="changeCount(item.id, false)"
+            @click="changeCount(item._id, false)"
             class="item-count__change item-group_pointer"><i class="fas fa-minus"></i></span>
           <input type="text" :value="item.count">
           <span
-            @click="changeCount(item.id, true)"
+            @click="changeCount(item._id, true)"
             class="item-count__change item-group_pointer"><i class="fas fa-plus"></i></span>
           <p class="item-count__price">{{ computedPrice(item.count, item.price) | formattedNumber }}</p>
         </div>
@@ -93,7 +93,8 @@ export default {
     }
   },
   created() {
-    this.$http.get('https://my-json-server.typicode.com/KondratskiVD/mock/products')
+    // this.$http.get('https://my-json-server.typicode.com/KondratskiVD/mock/products')
+    this.$http.get('/products')
     .then((response) => {
       this.products = response.data
       this.loading = false
@@ -114,14 +115,14 @@ export default {
     },
     removeItem(id) {
       this.products = this.products.filter(item => {
-        if (item.id !== id) {
+        if (item._id !== id) {
           return item
         }
       })
     },
     changeCount(id, increase) {
       this.products.map(item => {
-        if (item.id === id) {
+        if (item._id === id) {
             if (increase && item.count <= 49) {
               item.count++
             } else if (!increase && item.count >= 1 ){

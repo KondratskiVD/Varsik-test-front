@@ -109,6 +109,43 @@ button {
     font-size: 2rem;
     margin-bottom: 15px;
 }
+.field-group {
+    margin-bottom: 15px;
+}
+.invalid-feedback {
+    font-size: 80%;
+    color: #e74a3b;
+    margin-left: 33%;
+}
+.input-group {
+    display: flex;
+}
+.input-group p {
+    min-width: 150px;
+    margin-bottom: 10px;
+}
+.input-group input{
+    border: 1px solid #b0b0b0;
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+    padding: 0.5rem 0.5rem;
+    width: 250px;
+}
+.input-group select {
+    border: 1px solid #b0b0b0;
+    font-size: 0.8rem;
+    border-radius: 0.2rem;
+    padding: 0.5rem 0.5rem;
+    width: 268px;
+}
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
 
 @media screen and (max-width: 768px) {
     .item-text {
@@ -121,6 +158,9 @@ button {
     }
     .item-group {
         width: 100%;
+    }
+    .input-group {
+        flex-wrap: wrap;
     }
 }
 

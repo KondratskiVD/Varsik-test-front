@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="wrapper-form" @submit.prevent>
+    <form class="wrapper-form">
       <div class="field-group">
         <div class="input-group">
           <p>Name*</p>
@@ -61,7 +61,7 @@
       <div class="button-container">
         <button
             :disabled="!isValid"
-            @click.stop="registerUser" class="btn btn-primary btn-user btn-block">
+            @click.prevent="registerUser" class="btn btn-primary btn-user btn-block">
           PAY
         </button>
       </div>
@@ -97,10 +97,7 @@ export default {
   },
   computed: {
     isValid() {
-      return this.firstName !== null &&
-        this.address !== null &&
-        this.email !== null &&
-        this.phone !== null
+      return !!(this.firstName) && !!(this.address) && !!(this.email) && !!(this.phone)
     },
     sum () {
       return this.$store.state.cart.sum
@@ -118,46 +115,5 @@ export default {
 </script>
 
 <style>
-.field-group {
-  margin-bottom: 15px;
-}
-.invalid-feedback {
-  font-size: 80%;
-  color: #e74a3b;
-  margin-left: 33%;
-}
-.input-group {
-  display: flex;
-}
-.input-group p {
-  min-width: 150px;
-  margin-bottom: 10px;
-}
-.input-group input{
-  border: 1px solid #b0b0b0;
-  font-size: 0.8rem;
-  border-radius: 0.2rem;
-  padding: 0.5rem 0.5rem;
-  width: 250px;
-}
-.input-group select {
-  border: 1px solid #b0b0b0;
-  font-size: 0.8rem;
-  border-radius: 0.2rem;
-  padding: 0.5rem 0.5rem;
-  width: 268px;
-}
-.is-invalid {
-  border-color: #dc3545 !important;
-}
-.button-container {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
-}
-@media screen and (max-width: 768px) {
-  .input-group {
-    flex-wrap: wrap;
-  }
-}
+
 </style>
